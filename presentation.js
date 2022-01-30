@@ -3,96 +3,156 @@
 
 console.log(" - presentation - ");
 
-const everyDayItems = {};
-const everyWeekItems = {};
-const everyMonthItems = {};
+// ------------------------------ variable ------------------------------
+const everyDayTask = ["体温チェック", "安全呼称"];
+const everyWeekTask = ["交通安全", "健康Challenge"];
+const everyMonthTask = ["創意くふう", "ヒヤリハット"];
 
-let everyDayUl = document.querySelector(".everyday > ul");
-let everyDayH2 = document.querySelector(".everyday > h2");
+const members = [
+  {
+    name: "前田",
+    where: "在社",
+    toDo: "notyet"
+  },
+  {
+    name: "公志",
+    where: "年休",
+    toDo: "notyet"
+  },
+  {
+    name: "後田",
+    where: "仕入先S社",
+    toDo: "notyet"
+  },
+  {
+    name: "園田",
+    where: "在社",
+    toDo: "notyet"
+  },
+  {
+    name: "江田",
+    where: "振休   〜2/8",
+    toDo: "notyet"
+  },
+];
+
+let everyDay = document.getElementById("everyday");
+let everyWeek = document.getElementById("everyweek");
+let everyMonth = document.getElementById("everymonth");
 
 let form = document.querySelector("form");
 let input = document.querySelector("input");
 
-everyDayH2.addEventListener("click", () => {
-  everyDayUl.classList.toggle("hidden");
+let list = document.querySelector(".container > ul");
+let li = document.querySelector(".container > ul > li");
+
+let membersList = document.querySelector(".members > ul");
+
+// ------------------------------ choose List ------------------------------
+
+everyDay.addEventListener("click", () => {
+  if (list.className === "hidden") {
+    list.classList.remove("hidden");
+  } else if (everyDay.className === "select") {
+    list.classList.add("hidden");
+  }
+  everyDay.classList.toggle("select"); // ok
+  everyWeek.classList.remove("select"); // ok
+  everyMonth.classList.remove("select"); // ok
+  showList(everyDayTask);
 })
 
+everyWeek.addEventListener("click", () => {
+  if (list.className === "hidden") {
+    list.classList.remove("hidden");
+  } else if (everyWeek.className === "select") {
+    list.classList.add("hidden");
+  }
+  everyWeek.classList.toggle("select");
+  everyDay.classList.remove("select");
+  everyMonth.classList.remove("select");
+  showList(everyWeekTask);
+})
+
+everyMonth.addEventListener("click", () => {
+  if (list.className === "hidden") {
+    list.classList.remove("hidden");
+  } else if (everyMonth.className === "select") {
+    list.classList.add("hidden");
+  }
+  everyMonth.classList.toggle("select");
+  everyDay.classList.remove("select");
+  everyWeek.classList.remove("select");
+  showList(everyMonthTask);
+})
+
+// everyWeek.addEventListener("click", () => {
+//   list.classList.toggle("hidden");
+//   everyWeek.classList.toggle("select");
+//   everyDay.classList.remove("select");
+//   everyMonth.classList.remove("select");
+//   showList(everyWeekTask);
+// })
+
+// everyMonth.addEventListener("click", () => {
+//   list.classList.toggle("hidden");
+//   everyMonth.classList.toggle("select");
+//   everyDay.classList.remove("select");
+//   everyWeek.classList.remove("select");
+//   showList(everyMonthTask);
+// })
+
+// ------------------------------ function ------------------------------
+
+function showList (taskArray) {
+  while(list.firstChild) {
+    list.removeChild(list.firstChild);
+  }
+  for (const task of taskArray) {
+    const listItem = document.createElement("li");
+    listItem.textContent = task;
+    list.appendChild(listItem);
+  }
+}
+
+function showMembers (members) {
+  while (membersList.firstChild) {
+    membersList.removeChild(membersList.firstChild);
+  }
+  for (const member of members) {
+    const memberItem = document.createElement("li");
+    memberItem.textContent = member.name + " - " + member.where;
+    membersList.appendChild(memberItem);
+  }
+}
+window.onload = showMembers(members);
+
+// ------------------------------ add items ------------------------------
 
 form.addEventListener("submit", e => {
+  console.log("yam");
   e.preventDefault();
-  console.log("submit");
-  const listItem = document.createElement("li");
-  listItem.textContent = input.value;
-  // if ()
-  everyDayUl.appendChild(listItem);
+  if (list.classList.contains("hidden") === false) {
+    if (everyDay.classList.contains("select")) {
+      everyDayTask.push(input.value);
+      showList(everyDayTask);
+    } else if (everyWeek.classList.contains("select")) {
+      everyWeekTask.push(input.value);
+      showList(everyWeekTask);
+    } else if (everyMonth.classList.contains("select")) {
+      everyMonthTask.push(input.value);
+      showList(everyMonthTask);
+    }
+    input.value = "";
+  }
 
+// --------------- final ---------------
   if (input.value === "DIG2") {
-    document.body.classList.add("hidden");
+    document.body.querySelector("div").classList.add("hidden");
+    const thanks = document.querySelector("h5");
+    console.log(thanks.textContent);
+    setTimeout(function() {
+      thanks.classList.remove("hidden");
+      }, 3000);
   }
 })
-
-
-
-
-
-// --------------------------------------------------------------------------------
-
-// function makeMovie(title, director, year, duration, rating) {
-//   return {
-//     title: title,
-//     director: director,
-//     year: year,
-//     duration: duration,
-//     rating: rating
-//   }
-// }
-
-// const movie1 = makeMovie("Porco Rosso", "Hayao Miyazaki", 1992, 93, 5)
-// const movie2 = makeMovie("Howl's Moving Castle", "Hayao Miyazaki", 2004, 119, 5)
-// const movie3 = makeMovie("Kiki's Delivery Service", "Hayao Miyazaki", 1989, 102, 4.8)
-// const movie4 = makeMovie("Nausicaa of the vally of the wind", "Hayao Miyazaki", 1984, 116, 4.9)
-// const movie5 = makeMovie("Spirited Away", "Hayao Miyazaki", 2001, 124, 4.9)
-
-// const movies = [
-//   movie1,
-//   movie2,
-//   movie3,
-//   movie4,
-//   movie5
-// ]
-
-// console.log(movies);
-
-// function displayMovie (movie) {
-//   console.log(movie.title + " by " + movie.director);
-// }
-
-// function displayMovies (movies) {
-//   for (const movie of movies) {
-//     displayMovie(movie);
-//   }
-// }
-
-// displayMovies(movies);
-
-// function averageLength (movies) {
-//   let sumDuration = 0;
-//   for (const movie of movies) {
-//     sumDuration += movie.duration;
-//   }
-//   const average = sumDuration / movies.length;
-//   const averageTrunc = Math.floor(average / 60);
-//   return average + "min" + " ( ≒" + averageTrunc + "h" + (Math.round(60 * (average / 60 - averageTrunc))) + "min )" ;
-// }
-
-// console.log(averageLength(movies));
-
-// function averageRating (movies) {
-//   let sumRating = 0;
-//   for (const movie of movies) {
-//     sumRating += movie.rating;
-//   }
-//   return averageRating = sumRating / movies.length;;
-// }
-
-// console.log(averageRating(movies));
