@@ -154,4 +154,4 @@ form.addEventListener("submit", e => {
   }
 });
 
-console.log(" DIG2 ha saikou ");
+console.log(" Thanks for watching ");
