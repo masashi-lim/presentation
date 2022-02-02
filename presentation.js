@@ -15,7 +15,7 @@ const members = [
     toDo: "notyet"
   },
   {
-    name: "公志",
+    name: "真田",
     where: "年休",
     toDo: "notyet"
   },
@@ -25,7 +25,7 @@ const members = [
     toDo: "notyet"
   },
   {
-    name: "園田",
+    name: "横田",
     where: "在社",
     toDo: "notyet"
   },
@@ -36,37 +36,47 @@ const members = [
   },
 ];
 
-let everyDay = document.getElementById("everyday");
-let everyWeek = document.getElementById("everyweek");
-let everyMonth = document.getElementById("everymonth");
+const everyDay = document.getElementById("everyday");
+const everyWeek = document.getElementById("everyweek");
+const everyMonth = document.getElementById("everymonth");
 
-let form = document.querySelector("form");
-let input = document.querySelector("input");
+const form = document.querySelector("form");
+const input = document.querySelector("input");
+const button = document.querySelector("button");
 
-let list = document.querySelector(".container > ul");
-let li = document.querySelector(".container > ul > li");
+const list = document.querySelector(".container > ul");
+const li = document.querySelector(".container > ul > li");
+const desire = document.getElementById("desire");
 
-let membersList = document.querySelector(".members > ul");
+const membersList = document.querySelector(".members > ul");
+const membersListItem = document.querySelector(".members > ul > li");
+const groupMember = document.querySelector(".members > h3");
+
+let clickCount = 0;
 
 // ------------------------------ choose List ------------------------------
 
 everyDay.addEventListener("click", () => {
   if (list.className === "hidden") {
     list.classList.remove("hidden");
+    desire.classList.remove("hidden");
   } else if (everyDay.className === "select") {
     list.classList.add("hidden");
+    desire.classList.add("hidden");
   }
-  everyDay.classList.toggle("select"); // ok
-  everyWeek.classList.remove("select"); // ok
-  everyMonth.classList.remove("select"); // ok
+  everyDay.classList.toggle("select");
+  everyWeek.classList.remove("select");
+  everyMonth.classList.remove("select");
   showList(everyDayTask);
 })
 
 everyWeek.addEventListener("click", () => {
   if (list.className === "hidden") {
     list.classList.remove("hidden");
+    desire.classList.remove("hidden");
   } else if (everyWeek.className === "select") {
     list.classList.add("hidden");
+    desire.classList.add("hidden");
   }
   everyWeek.classList.toggle("select");
   everyDay.classList.remove("select");
@@ -77,8 +87,10 @@ everyWeek.addEventListener("click", () => {
 everyMonth.addEventListener("click", () => {
   if (list.className === "hidden") {
     list.classList.remove("hidden");
+    desire.classList.remove("hidden");
   } else if (everyMonth.className === "select") {
     list.classList.add("hidden");
+    desire.classList.add("hidden");
   }
   everyMonth.classList.toggle("select");
   everyDay.classList.remove("select");
@@ -86,23 +98,7 @@ everyMonth.addEventListener("click", () => {
   showList(everyMonthTask);
 })
 
-// everyWeek.addEventListener("click", () => {
-//   list.classList.toggle("hidden");
-//   everyWeek.classList.toggle("select");
-//   everyDay.classList.remove("select");
-//   everyMonth.classList.remove("select");
-//   showList(everyWeekTask);
-// })
-
-// everyMonth.addEventListener("click", () => {
-//   list.classList.toggle("hidden");
-//   everyMonth.classList.toggle("select");
-//   everyDay.classList.remove("select");
-//   everyWeek.classList.remove("select");
-//   showList(everyMonthTask);
-// })
-
-// ------------------------------ function ------------------------------
+// ------------------------------ functions ------------------------------
 
 function showList (taskArray) {
   while(list.firstChild) {
@@ -127,10 +123,21 @@ function showMembers (members) {
 }
 window.onload = showMembers(members);
 
+groupMember.addEventListener("click", () => {
+  window.alert("メンバーをクリックすると...?");
+  clickCount = 1;
+});
+
+membersList.addEventListener("click", () => {
+  if (clickCount === 1) {
+    clickCount = 0;
+    window.alert("何も起きません");
+  }
+});
+
 // ------------------------------ add items ------------------------------
 
 form.addEventListener("submit", e => {
-  console.log("yam");
   e.preventDefault();
   if (list.classList.contains("hidden") === false) {
     if (everyDay.classList.contains("select")) {
@@ -145,14 +152,4 @@ form.addEventListener("submit", e => {
     }
     input.value = "";
   }
-
-// --------------- final ---------------
-  if (input.value === "DIG2") {
-    document.body.querySelector("div").classList.add("hidden");
-    const thanks = document.querySelector("h5");
-    console.log(thanks.textContent);
-    setTimeout(function() {
-      thanks.classList.remove("hidden");
-      }, 3000);
-  }
-})
+});
