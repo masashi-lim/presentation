@@ -4,13 +4,15 @@
   <meta charset="utf-8">
   <title>DIG Practise</title>
   <style>
+    
     html {
       height: 100%;
+      background-image: url("back.png")
     }
 
     body {
       height: 100%;
-      color: rgb(75, 75, 75);
+      color: rgb(228, 225, 225);
       position: relative;
     }
 
@@ -24,6 +26,7 @@
 
     h1 {
       margin: 0;
+      padding-left: 20px;
       text-align: center;
     }
 
@@ -81,14 +84,20 @@
       font-size: 50px;
     }
 
+    #desire {
+      margin-top: 30px;
+    }
+
     h3 {
       font-size: 30px;
+      cursor: alias;
     }
 
     .members li {
       text-align: left;
       font-size: 24px;
       list-style: none;
+      cursor: alias;
     }
 
     .hidden {
@@ -107,7 +116,7 @@
     #last {
       font-size: 50px;
       position: absolute;
-      top: 80%;
+      top: 60%;
       right: 30px;
     }
 
@@ -125,33 +134,34 @@
       <h2 id="everyweek">毎週</h2>
       <h2 id="everymonth">毎月</h2>
       <form>
+        <p>リストを選択して追加</p>
         <input type="text" minlength="1" maxlength="18" required>
-        <button>push me</button>
+        <button>追加</button>
       </form>
     </div>
     
     <main>
       <div class="container">
         <ul class="hidden">
-          <li>aaaaaaaaa</li>
-          <li>bbb</li>
         </ul>
+      </div>
+
+      <div id="desire" class="hidden">
+        <h5>タスクに対象となるデータの<br>リンクを登録すると...<br></h5>
+        <br>
+        <h5>タスクをクリックすると<br>タスク完了メンバーの横に<br>チェックがつく...といいのに</h5>
       </div>
       
       <div class="members">
         <h3>グループメンバー</h3>
         <ul class="">
-          <li>aaaaaaaaa</li>
+          <li>JSから情報を読み取れません</li>
         </ul>
       </div>
     </main>
     
     
   </div>
-  
-  <h5 id="last" class="hidden">20日間、本当にありがとうございました!!</h5>
-  <!-- </div>  
-  <div class="last"> -->
-    <script src="presentation.js"></script>
+    <script src="presentation2.js"></script>
   </body>
   </html>
