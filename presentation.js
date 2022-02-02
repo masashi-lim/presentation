@@ -153,3 +153,5 @@ form.addEventListener("submit", e => {
     input.value = "";
   }
 });
+
+console.log(" DIG2 ha saikou ");
