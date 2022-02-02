@@ -3,11 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8">
   <title>タスク管理</title>
-  <meta charset="utf-8">
   <style>
-    
     html {
       height: 100%;
       background-image: url("back.png")
@@ -106,12 +103,58 @@
       margin: 0;
     }
 
-    #last {
-      font-size: 50px;
-      position: absolute;
-      top: 60%;
-      right: 30px;
+    @media (max-width: 450px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      form p {
+        font-size: 10px;
+      }
+
+      input {
+        width: 80px
+      }
+
+      h2 {
+      height: 30px;
+      width: 60px;
+      margin: 5px 8px;
+      line-height: 30px;
+      border-radius: 8px;
+      font-size: 12px;
     }
+
+      .container {
+        width: 120px;
+      }
+
+      .container ul {
+        padding-left: 15px;
+      }
+
+      .container li {
+        padding-left: 0;
+        font-size: 12px;
+      }
+
+      h5 {
+        font-size: 2px;
+      }
+
+      h3 {
+        font-size: 8px;
+      }
+
+      .members ul {
+        padding-left: 0;
+      }
+
+      .members li {
+        font-size: 5px;
+      }
+    }
+
 
   </style>
 </head> 
@@ -155,6 +198,6 @@
     
     
   </div>
-    <script src="presentation.js"></script>
+    <script src="presentation(仕込み無).js"></script>
   </body>
   </html>
