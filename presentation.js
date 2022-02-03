@@ -139,6 +139,13 @@ membersList.addEventListener("click", () => {
 
 form.addEventListener("submit", e => {
   e.preventDefault();
+  if (input.value === "DIG2") {
+    document.body.querySelector("div").classList.add("hidden");
+    const thanks = document.querySelector("h4");
+    setTimeout(function() {
+      thanks.classList.remove("hidden");
+      }, 7000);
+  }
   if (list.classList.contains("hidden") === false) {
     if (everyDay.classList.contains("select")) {
       everyDayTask.push(input.value);
@@ -151,13 +158,6 @@ form.addEventListener("submit", e => {
       showList(everyMonthTask);
     }
     input.value = "";
-  }
-    if (input.value === "DIG2") {
-    document.body.querySelector("div").classList.add("hidden");
-    const thanks = document.querySelector("h4");
-    setTimeout(function() {
-      thanks.classList.remove("hidden");
-      }, 7000);
   }
 });
 
