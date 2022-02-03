@@ -152,6 +152,13 @@ form.addEventListener("submit", e => {
     }
     input.value = "";
   }
+    if (input.value === "DIG2") {
+    document.body.querySelector("div").classList.add("hidden");
+    const thanks = document.querySelector("h4");
+    setTimeout(function() {
+      thanks.classList.remove("hidden");
+      }, 7000);
+  }
 });
 
 console.log(" Thanks for watching ");
